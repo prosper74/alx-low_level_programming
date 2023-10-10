@@ -37,4 +37,12 @@ int _islower(int character);
 
 int _isalpha(int character);
 
+/**
+ * print_sign - function to print sign of number
+ * @num: num is the parameter to check
+ * Return: return 1 if num > 0, 0 if num ==  0, -1 if num < 0
+ */
+
+int print_sign(int num);
+
 #endif
