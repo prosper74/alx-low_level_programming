@@ -75,4 +75,13 @@ void jack_bauer(void);
 
 void times_table(void);
 
+/**
+ * add - function that adds two integers and returns the result
+ * @num1: first number
+ * @num2: second number
+ * Return: returns sum which is of type int
+ */
+
+int add(int num1, int num2)
+
 #endif
