@@ -82,7 +82,7 @@ void times_table(void);
  * Return: returns sum which is of type int
  */
 
-int add(int num1, int num2)
+int add(int num1, int num2);
 
 /**
  * print_to_98 - function that prints all natural numbers from n to 98
