@@ -53,4 +53,12 @@ int print_sign(int num);
 
 int _abs(int);
 
+/**
+ * print_last_digit - function that print last digit of a number
+ * @int: integer type
+ * Return: returns last digit of number
+ */
+
+int print_last_digit(int);
+
 #endif
