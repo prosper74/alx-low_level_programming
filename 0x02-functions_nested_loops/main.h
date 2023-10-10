@@ -15,4 +15,10 @@ int _putchar(char character);
 
 void print_alphabet(void);
 
+/**
+ * print_alphabet_x10 - print lowercase alphabet 10 times
+ */
+
+void print_alphabet_x10(void);
+
 #endif
