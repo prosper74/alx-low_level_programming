@@ -45,4 +45,12 @@ int _isalpha(int character);
 
 int print_sign(int num);
 
+/**
+ * _abs - function to computer the absolute value of integer
+ * @int: integer type
+ * Return: return the absolute value
+ */
+
+int _abs(int);
+
 #endif
