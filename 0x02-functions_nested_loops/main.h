@@ -91,4 +91,11 @@ int add(int num1, int num2);
 
 void print_to_98(int num);
 
+/**
+ * print_times_table - function that prints the n times table
+ * @num: integer argument
+ */
+
+void print_times_table(int num);
+
 #endif
