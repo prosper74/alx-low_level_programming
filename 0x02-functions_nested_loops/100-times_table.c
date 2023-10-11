@@ -16,7 +16,7 @@ void print_times_table(int num)
 	{
 		for (row = 0; row <= num; row++)
 		{
-			for (column = 0; column <= n; column++)
+			for (column = 0; column <= num; column++)
 			{
 				digit = (row * column);
 				if (column == 0)
