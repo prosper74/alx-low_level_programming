@@ -7,4 +7,8 @@ int _isdigit(int charatcer);
 
 int mul(int num1, int num2);
 
+int _putchar(char character);
+
+void print_numbers(void);
+
 #endif
