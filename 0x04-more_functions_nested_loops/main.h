@@ -3,4 +3,6 @@
 
 int _isupper(int character);
 
+int _isdigit(int charatcer);
+
 #endif
