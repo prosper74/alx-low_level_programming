@@ -1,5 +1,4 @@
 #include "main.h"
-#include "2-strlen.c"
 
 /**
  * _atoi - a function that convert a string to an integer
@@ -7,36 +6,25 @@
  *
  * Return: returns integer value
  */
+
 int _atoi(char *val)
 {
-	int counter, sign = 0, digitCount, positionValue = 1, num = 0;
+	int sign = 1;
+	unsigned int num = 0;
+	char *temp = val;
 
-	for (counter = 0; counter < _strlen(val); counter++)
+	while (*temp != '\0' && (*temp < '0' || *temp > '9'))
 	{
-		if (!(val[counter] >= '0' && val[counter] <= '9') && digitCount > 0)
-			break;
-		if (val[counter] == '-')
-			sign--;
-		if (val[counter] == '+')
-			sign++;
-		if (val[counter] >= '0' && val[counter] <= '9')
-		{
-			digitCount++;
-		}
+		if (*temp == '-')
+			sign *= -1;
+		temp++;
 	}
-	while (digitCount > 0)
+	if (*temp != '\0')
 	{
-		num += ((val[counter - 1] - '0') * positionValue);
-		counter--;
-		digitCount--;
-		positionValue *= 10;
+		do {
+			num = num * 10 + (*temp - '0');
+			temp++;
+		} while (*temp >= '0' && *temp <= '9');
 	}
-	if (sign >= 0)
-	{
-		num *= 1;
-	} else
-	{
-		num *= -1;
-	}
-	return (num);
+	return (num * sign);
 }
