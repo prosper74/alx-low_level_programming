@@ -7,4 +7,6 @@ void swap_int(int *num1, int *num2);
 
 int _strlen(char *val);
 
+void _puts(char *val);
+
 #endif
