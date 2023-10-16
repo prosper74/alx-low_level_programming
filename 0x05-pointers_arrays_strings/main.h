@@ -11,4 +11,6 @@ int _strlen(char *val);
 
 void _puts(char *val);
 
+void print_rev(char *val);
+
 #endif
