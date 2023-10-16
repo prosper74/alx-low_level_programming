@@ -6,13 +6,13 @@
  *
  * @val: string to print
  */
+
 void _puts(char *val)
 {
-	int i = 0;
+	int i;
 
-	while (*(val + i) != '\0')
+	for (i = 0; *(val + i) != '\0'; i++)
 	{
-		i++;
 		_putchar(*(val + i));
 	}
 	_putchar('\n');
