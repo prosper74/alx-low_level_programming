@@ -23,4 +23,6 @@ void print_array(int *val, int num);
 
 char *_strcpy(char *destination, char *source);
 
+int _atoi(char *val);
+
 #endif
