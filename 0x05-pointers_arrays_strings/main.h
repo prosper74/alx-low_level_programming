@@ -3,6 +3,8 @@
 
 void reset_to_98(int *num);
 
-void swap_int(int *num1, int *num2);
+void swap_int(int *num1, int *num2)i;
+
+int _strlen(char *val);
 
 #endif
