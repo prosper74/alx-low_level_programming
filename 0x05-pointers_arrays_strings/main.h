@@ -19,4 +19,6 @@ void puts2(char *val);
 
 void puts_half(char *val);
 
+void print_array(int *val, int num);
+
 #endif
