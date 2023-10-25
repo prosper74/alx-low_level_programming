@@ -33,5 +33,5 @@ int is_palindrome(char *s)
 
 	if (length <= 1)
 		return (1);
-	return (palindrome_helper(s, l));
+	return (palindrome_helper(s, length));
 }
