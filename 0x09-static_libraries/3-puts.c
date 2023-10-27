@@ -4,12 +4,6 @@
 #include <ctype.h>
 #include <string.h>
 
-/**
-* _puts - entry point
-* @s: arguement
-*
-*/
-
 void _puts(char *s)
 {
 	puts(s);
