@@ -1,10 +1,27 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
 
-int _strcmp(char *s1, char *s2)
+/**
+* _strcmp - a function that compares two strings
+* @str1: first string
+* @str2: second string
+* Return: int that tells num spaces in between
+*/
+
+int _strcmp(char *str1, char *str2)
 {
-	return (strcmp(s1, s2));
+int count = 0;
+
+while (*(str1 + count) == *(str2 + count) && *(str1 + count))
+{
+	count++;
+}
+
+if (*(str2 + count))
+{
+	return (*(str1 + count) - *(str2 + count));
+}
+else
+{
+	return (0);
+}
 }

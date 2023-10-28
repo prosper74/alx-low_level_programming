@@ -1,10 +1,19 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
 
-int _abs(int n)
+/**
+ * _abs - A program to compute absolute value of integer
+ *
+ * @num: num is the integer argument
+ *
+ * Return: returns the absolute value of num
+ */
+
+int _abs(int num)
 {
-	return (abs(n));
+	if (num > 0)
+		return (num);
+	else if (num < 0)
+		return (-num);
+
+	return (0);
 }
