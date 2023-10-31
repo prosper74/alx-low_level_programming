@@ -2,12 +2,12 @@
 #include <stdlib.h>
 
 /**
- * argstostr - a function that concatenates all the arguments of your program.
- * @ac: Arg count
- * @av: Array of arguments
- *
- * Return: a pointer to a new string, or NULL if it fails
- */
+* argstostr - a function that concatenates all the arguments of your program.
+* @ac: Arg count
+* @av: Array of arguments
+*
+* Return: a pointer to a new string, or NULL if it fails
+*/
 
 char *argstostr(int ac, char **av)
 {
@@ -17,7 +17,6 @@ char *argstostr(int ac, char **av)
 	if (ac == 0 || av == NULL)
 		return (NULL);
 	count1 = length = 0;
-
 	while (count1 < ac)
 	{
 		count2 = 0;
@@ -29,14 +28,11 @@ char *argstostr(int ac, char **av)
 		length++;
 		count1++;
 	}
-
 	length++;
 	mallocStr = malloc(length * sizeof(char));
-
 	if (mallocStr == NULL)
 		return (NULL);
 	count1 = count3 = 0;
-
 	while (count1 < ac)
 	{
 		count2 = 0;
@@ -46,7 +42,6 @@ char *argstostr(int ac, char **av)
 			count3++;
 			count2++;
 		}
-
 		mallocStr[count3] = '\n';
 		count3++;
 		count1++;
