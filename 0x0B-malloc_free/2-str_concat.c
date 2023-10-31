@@ -16,6 +16,7 @@ char *str_concat(char *str1, char *str2)
 	int count1, count2, length1, length2;
 
 	emptyStr = "";
+
 	if (str1 == NULL)
 		str1 = emptyStr;
 	if (str2 == NULL)
@@ -30,18 +31,19 @@ char *str_concat(char *str1, char *str2)
 	{
 		length2++;
 	}
-
 	length2++;
 	mallocStr = malloc((length1 + length2) * sizeof(*str1));
 
 	if (mallocStr == NULL)
 		return (NULL);
+	count1 = 0;
 
-	for (count1 = 0; count1 < length1; count1++)
+	while (count1 < length1)
 	{
 		mallocStr[count1] = str1[count1];
+		count1++;
 	}
-
+	count2 = 0;
 	while (count2 <= length2)
 	{
 		mallocStr[count1] = str2[count2];
