@@ -15,5 +15,6 @@ void *malloc_checked(unsigned int b)
 	reservedMemory = malloc(b);
 	if (reservedMemory == NULL)
 		exit(98);
+
 	return (reservedMemory);
 }
