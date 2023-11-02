@@ -10,7 +10,7 @@
 
 void *malloc_checked(unsigned int b)
 {
-	void *reservedMemory;
+	int *reservedMemory;
 
 	reservedMemory = malloc(b);
 	if (reservedMemory == NULL)
