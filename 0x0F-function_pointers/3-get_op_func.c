@@ -1,4 +1,5 @@
-#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "3-calc.h"
 
 /**
@@ -8,24 +9,24 @@
  * Return: pointer to correct operation function (0-4)
  */
 
-int (*get_op_func(char *s))(int a, int b)
+int (*get_op_func(char *s))(int, int)
 {
 	op_t ops[] = {
-			{"+", op_add},
-			{"-", op_sub},
-			{"*", op_mul},
-			{"/", op_div},
-			{"%", op_mod},
-			{NULL, NULL}};
+		{"+", op_add},
+		{"-", op_sub},
+		{"*", op_mul},
+		{"/", op_div},
+		{"%", op_mod},
+		{NULL, NULL}
+	};
 
-	int count;
+	int i = 0;
 
-	for (count = 0; ops[count].op != NULL; count++)
+	while (ops[i].op)
 	{
-		if (*s == *ops[count].op)
-		{
-			return (ops[count].f);
-		}
+		if (strcmp(ops[i].op, s) == 0)
+			return (ops[i].f);
+		i++;
 	}
 
 	return (NULL);
