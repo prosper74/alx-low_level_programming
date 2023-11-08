@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 4)
 	{
-		printf("Error! Enter correct values. E.g 5 + 2\n");
+		printf("Error\n");
 		exit(98);
 	}
 
@@ -29,13 +29,13 @@ int main(int argc, char *argv[])
 
 	if (func_ptr == NULL || (argv[2][1] != '\0'))
 	{
-		printf("Error: Function pointer is not initialized\n");
+		printf("Error\n");
 		exit(99);
 	}
 
 	if ((argv[2][0] == '/' || argv[2][0] == '%') && argv[3][0] == '0')
 	{
-		printf("Error: Division or modulus by zero is not allowed\n");
+		printf("Error\n");
 		exit(100);
 	}
 
