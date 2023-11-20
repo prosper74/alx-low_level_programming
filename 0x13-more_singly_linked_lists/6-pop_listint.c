@@ -1,7 +1,8 @@
 #include "lists.h"
 
 /**
-* pop_listint - Function that frees the list and make the head = null
+* pop_listint - Function that deletes the head node and
+* return the remianing nodes of the list
 * @head: A pointer to the listint_t list head.
 *
 * Return: A pointer to the head of the list or 0 if Null
