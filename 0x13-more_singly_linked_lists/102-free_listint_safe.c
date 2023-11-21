@@ -4,30 +4,40 @@
 * free_listint_safe - Function that frees a listint_t list.
 * This function can free lists with a loop
 * You should go though the list only once
-* @h: A pointer to the listint_t list head.
+* @head: A pointer to the listint_t list head.
 *
 * Return: The size of the list that was free’d
 */
 
-size_t free_listint_safe(listint_t **h)
+size_t free_listint_safe(listint_t **head)
 {
-size_t count = 0;
-listint_t *current_node = *h, *next_node;
+size_t length = 0;
+listint_t *temp_node;
+int difference;
 
-while (current_node != NULL)
+if (!head || !*head)
+	return (0);
+
+while (*head)
 {
-	next_node = current_node->next;
-	free(current_node);
-	current_node = next_node;
-	count++;
-
-	if (current_node == *h)
+	difference = *head - (*head)->next;
+	if (difference > 0)
 	{
-	*h = NULL;
+	temp_node = (*head)->next;
+	free(*head);
+	*head = temp_node;
+	length++;
+	}
+	else
+	{
+	free(*head);
+	*head = NULL;
+	length++;
 	break;
 	}
 }
 
-return (count);
+*head = NULL;
+return (length);
 }
 
