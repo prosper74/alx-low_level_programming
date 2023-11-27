@@ -23,16 +23,25 @@ printf("  Data:%s\n", header->e_ident[EI_DATA] == ELFDATA2LSB
 							? "2's complement, little endian"
 							: "2's complement, big endian");
 printf("  Version:%d (current)\n", header->e_ident[EI_VERSION]);
-printf("  OS/ABI:                            %s\n", header->e_ident[EI_OSABI] == ELFOSABI_SYSV ? "UNIX - System V" : "UNIX - Other");
-printf("  ABI Version:                       %d\n", header->e_ident[EI_ABIVERSION]);
-printf("  Type:                              %s\n", header->e_type == ET_NONE ? "NONE (None)" : header->e_type == ET_REL ? "REL (Relocatable file)"
-																							: header->e_type == ET_EXEC  ? "EXEC (Executable file)"
-																							: header->e_type == ET_DYN   ? "DYN (Shared object file)"
+printf("  OS/ABI: %s\n", header->e_ident[EI_OSABI] ==
+ELFOSABI_SYSV ? "UNIX - System V" : "UNIX - Other");
+printf("  ABI Version: %d\n", header->e_ident[EI_ABIVERSION]);
+printf("  Type: %s\n", header->e_type == ET_NONE
+? "NONE (None)" : header->e_type == ET_REL ? "REL (Relocatable file)"
+: header->e_type == ET_EXEC  ? "EXEC (Executable file)"
+: header->e_type == ET_DYN   ? "DYN (Shared object file)"
 																							: header->e_type == ET_CORE  ? "CORE (Core file)"
 																														: "Unknown");
 printf("  Entry point address:               0x%lx\n", header->e_entry);
 }
 
+/**
+* main - entry point
+* @argc: command line arguments
+* @argv: pointer to header
+*
+* Return: 0 on success, -1 on failure
+*/
 int main(int argc, char *argv[])
 {
 int fd;
@@ -58,7 +67,8 @@ if (read(fd, &header, sizeof(header)) != sizeof(header))
 	exit(98);
 }
 
-if (header.e_ident[EI_MAG0] != ELFMAG0 || header.e_ident[EI_MAG1] != ELFMAG1 || header.e_ident[EI_MAG2] != ELFMAG2 || header.e_ident[EI_MAG3] != ELFMAG3)
+if (header.e_ident[EI_MAG0] != ELFMAG0 || header.e_ident[EI_MAG1] != ELFMAG1
+|| header.e_ident[EI_MAG2] != ELFMAG2 || header.e_ident[EI_MAG3] != ELFMAG3)
 {
 	fprintf(stderr, "Error: %s is not an ELF file\n", argv[1]);
 	exit(98);
