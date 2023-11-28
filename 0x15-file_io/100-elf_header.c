@@ -1,87 +1,87 @@
 #include "main.h"
 
 /**
-* print_elf_header - entry point for function print_elf_header
-* @header: pointer to header
+* check_magic - entry point for function print_elf_header
+* @e_ident: pointer to header
 */
 
-void print_elf_header(Elf64_Ehdr *header)
+void check_magic(unsigned char *e_ident)
 {
 int i;
 
-printf("ELF Header:\n");
-printf("  Magic:   ");
-for (i = 0; i < EI_NIDENT; i++)
-
-	printf("%02x ", header->e_ident[i]);
-printf("\n");
-printf("  Class: %s\n", header->e_ident[EI_CLASS] ==
-								ELFCLASS32
-							? "ELF32"
-							: "ELF64");
-printf("  Data:%s\n", header->e_ident[EI_DATA] == ELFDATA2LSB
-							? "2's complement, little endian"
-							: "2's complement, big endian");
-printf("  Version:%d (current)\n", header->e_ident[EI_VERSION]);
-printf("  OS/ABI: %s\n", header->e_ident[EI_OSABI] ==
-ELFOSABI_SYSV ? "UNIX - System V" : "UNIX - Other");
-printf("  ABI Version: %d\n", header->e_ident[EI_ABIVERSION]);
-printf("  Type: %s\n", header->e_type == ET_NONE
-? "NONE (None)" : header->e_type == ET_REL ? "REL (Relocatable file)"
-: header->e_type == ET_EXEC  ? "EXEC (Executable file)"
-: header->e_type == ET_DYN   ? "DYN (Shared object file)"
-																							: header->e_type == ET_CORE  ? "CORE (Core file)"
-																														: "Unknown");
-printf("  Entry point address:               0x%lx\n", header->e_entry);
+for (i = 0; i < 4; i++)
+{
+	if (e_ident[i] != 127 && e_ident[i] != 'E' &&
+		e_ident[i] != 'L' && e_ident[i] != 'F')
+	exit(98);
+}
 }
 
 /**
-* main - entry point
-* @argc: command line arguments
-* @argv: pointer to header
-*
-* Return: 0 on success, -1 on failure
+* print_magic - entry point for function print_elf_header
+* @e_ident: pointer to header
 */
-int main(int argc, char *argv[])
+void print_magic(unsigned char *e_ident)
 {
-int fd;
+int i;
 
-Elf64_Ehdr header;
+for (i = 0; i < EI_NIDENT; i++)
+{
+	printf("%02x", e_ident[i]);
+	if (i != EI_NIDENT - 1)
+	printf(" ");
+}
+
+printf("\n");
+}
+
+/**
+* print_class - entry point for function print_elf_header
+* @e_ident: pointer to header
+*/
+void print_class(unsigned char *e_ident)
+{
+printf("Class: ");
+switch (e_ident[EI_CLASS])
+{
+case ELFCLASS32:
+	printf("ELF32\n");
+	break;
+case ELFCLASS64:
+	printf("ELF64\n");
+	break;
+default:
+	printf("<unknown: %x>\n", e_ident[EI_CLASS]);
+}
+}
+
+/**
+* main - entry point for function print_elf_header
+* @argc: command line arguments
+* @argv: command line arguments
+* Return: 0 on success
+*/
+int main(int argc, char **argv)
+{
+
+int fd = open(argv[1], O_RDONLY);
+
+Elf64_Ehdr *header = malloc(sizeof(Elf64_Ehdr));
+read(fd, header, sizeof(Elf64_Ehdr));
 
 if (argc != 2)
 {
-	fprintf(stderr, "Usage: %s elf_filename\n", argv[0]);
-	exit(98);
+	printf("Usage: %s <filename>\n", argv[0]);
+	return (1);
 }
 
-fd = open(argv[1], O_RDONLY);
-if (fd == -1)
-{
-	fprintf(stderr, "Error: Can't read from file %s\n", argv[1]);
-	exit(98);
-}
+check_magic(header->e_ident);
+print_magic(header->e_ident);
+print_class(header->e_ident);
 
-if (read(fd, &header, sizeof(header)) != sizeof(header))
-{
-	fprintf(stderr, "Error: Can't read ELF header from file %s\n", argv[1]);
-	exit(98);
-}
+free(header);
+close(fd);
 
-if (header.e_ident[EI_MAG0] != ELFMAG0 || header.e_ident[EI_MAG1] != ELFMAG1
-|| header.e_ident[EI_MAG2] != ELFMAG2 || header.e_ident[EI_MAG3] != ELFMAG3)
-{
-	fprintf(stderr, "Error: %s is not an ELF file\n", argv[1]);
-	exit(98);
-}
-
-print_elf_header(&header);
-
-if (close(fd) == -1)
-{
-	fprintf(stderr, "Error: Can't close fd %d\n", fd);
-	exit(100);
-}
-
-exit(EXIT_SUCCESS);
+return (0);
 }
 
