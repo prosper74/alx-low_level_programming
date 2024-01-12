@@ -113,13 +113,12 @@ int main(int argc, char **argv)
 		max_char = argv[1][current_char] * max_char;
 		current_char = current_char + 1;
 	}
-	keygen[3] = ((char *)alph)[f4(argv[1], len)];
-	keygen[4] = ((char *)alph)[f5(argv[1], len)];
-	keygen[5] = ((char *)alph)[f6(argv[1])];
+	keygen[3] = ((char *)alph)[get_max_char(argv[1], len)];
+	keygen[4] = ((char *)alph)[multiply_chars(argv[1], len)];
+	keygen[5] = ((char *)alph)[generate_rand_char(argv[1])];
 	keygen[6] = '\0';
 	for (max_char = 0; keygen[max_char]; max_char++)
 		printf("%c", keygen[max_char]);
 
 	return (0);
 }
-
