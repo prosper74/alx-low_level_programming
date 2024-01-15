@@ -1,24 +1,15 @@
-#include "main.h"
+#include <unistd.h>
 
 /**
- * main - Entry point
+ * _putchar - writes the character to stdout
  *
- * Progarma to print _putchar to the screen
+ * @character: the parameter that will be printed out
  *
- * Return: returns 0
+ * Return: 0 on success
  *
  */
-int main(void)
-{
-	_putchar('_');
-	_putchar('p');
-	_putchar('u');
-	_putchar('t');
-	_putchar('c');
-	_putchar('h');
-	_putchar('a');
-	_putchar('r');
-	_putchar('\n');
 
-	return (0);
+int _putchar(char character)
+{
+	return (write(1, &character, 1));
 }
