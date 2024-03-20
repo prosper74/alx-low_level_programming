@@ -1,0 +1,4 @@
+school: main.c file1.c file2.c
+    gcc main.c file1.c file2.c -o school
+
+all: school
