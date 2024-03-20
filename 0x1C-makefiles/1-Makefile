@@ -1,8 +1,7 @@
 CC = gcc
 SRC = main.c file1.c file2.c
-EXECUTABLE = school
 
-$(EXECUTABLE): $(SRC)
-    $(CC) $(SRC) -o $(EXECUTABLE)
+school: $(SRC)
+    $(CC) $(SRC) -o school
 
-all: $(EXECUTABLE)
+all: school
