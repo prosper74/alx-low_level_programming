@@ -1,7 +1,4 @@
 CC = gcc
-SRC = main.c file1.c file2.c
-
-school: $(SRC)
-    $(CC) $(SRC) -o school
-
-all: school
+SRC = main.c school.c
+all: $(SRC)
+	$(CC) $(SRC) -o school
